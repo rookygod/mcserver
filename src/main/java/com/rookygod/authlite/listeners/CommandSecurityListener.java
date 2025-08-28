@@ -7,7 +7,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.server.ServerCommandEvent;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -58,6 +57,31 @@ public class CommandSecurityListener implements Listener {
     }
     
     /**
+     * Handles server commands and hides sensitive ones from the console
+     */
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onServerCommand(ServerCommandEvent event) {
+        if (!plugin.getConfigManager().isHideSensitiveCommands()) {
+            return;
+        }
+        
+        String[] parts = event.getCommand().split(" ");
+        String command = "/" + parts[0].toLowerCase();
+        
+        if (sensitiveCommands.contains(command)) {
+            // Create a sanitized version of the command for logging
+            String sanitizedCommand = sanitizeCommand("/" + event.getCommand());
+            
+            // Set the command to the sanitized version for console logging
+            // This doesn't affect command execution, only what's shown in logs
+            event.setCommand(sanitizedCommand.substring(1)); // Remove the leading slash
+            
+            // Log a sanitized version to the console
+            plugin.getLogger().info("Console issued a sensitive command (password hidden)");
+        }
+    }
+    
+    /**
      * Sanitizes a command by replacing password arguments with asterisks
      */
     private String sanitizeCommand(String command) {
@@ -77,4 +101,3 @@ public class CommandSecurityListener implements Listener {
         return command;
     }
 }
-

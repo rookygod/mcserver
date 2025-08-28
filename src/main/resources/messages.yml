@@ -23,6 +23,7 @@ register:
   password_too_short: "&cPassword is too short! Minimum length: {min}"
   password_too_long: "&cPassword is too long! Maximum length: {max}"
   usage: "&cUsage: /register <password> <confirmPassword>"
+  prompt_after_unregister: "&eYou have unregistered. Please register again using /register <password> <confirmPassword>"
 
 # Change password messages
 change_password:
@@ -74,4 +75,3 @@ protection:
 # Session messages
 session:
   resumed: "&aYour session has been resumed!"
-

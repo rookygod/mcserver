@@ -29,6 +29,9 @@ authentication:
   
   # Hide sensitive commands from console (like /login and /register)
   hide-sensitive-commands: true
+  
+  # Interval in seconds to remind players to register after unregistering (set to 0 to disable)
+  post-unregister-reminder-interval: 5
 
 # Session settings
 session:

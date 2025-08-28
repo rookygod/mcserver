@@ -20,6 +20,7 @@ public class ConfigManager {
     private boolean kickOnTimeout;
     private int reminderInterval;
     private boolean hideSensitiveCommands;
+    private int postUnregisterReminderInterval;
     
     // Session settings
     private boolean enableSessions;
@@ -72,6 +73,7 @@ public class ConfigManager {
         kickOnTimeout = config.getBoolean("authentication.kick-on-timeout", true);
         reminderInterval = config.getInt("authentication.reminder-interval", 10);
         hideSensitiveCommands = config.getBoolean("authentication.hide-sensitive-commands", true);
+        postUnregisterReminderInterval = config.getInt("authentication.post-unregister-reminder-interval", 5);
         
         // Session settings
         enableSessions = config.getBoolean("session.enable", true);
@@ -126,6 +128,10 @@ public class ConfigManager {
     
     public boolean isHideSensitiveCommands() {
         return hideSensitiveCommands;
+    }
+    
+    public int getPostUnregisterReminderInterval() {
+        return postUnregisterReminderInterval;
     }
     
     public boolean isEnableSessions() {

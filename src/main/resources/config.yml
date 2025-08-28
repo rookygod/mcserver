@@ -1,0 +1,81 @@
+# AuthLite Configuration
+# A lightweight authentication plugin for Paper servers
+
+# Authentication settings
+authentication:
+  # Minimum password length
+  min-password-length: 4
+  
+  # Maximum password length
+  max-password-length: 16
+  
+  # Force players to register before playing
+  force-register: true
+  
+  # Time in seconds before kicking a player if they don't login
+  login-timeout: 60
+  
+  # Maximum number of login attempts before kicking the player
+  max-login-attempts: 3
+  
+  # Kick player on wrong password
+  kick-on-wrong-password: true
+  
+  # Kick player on login timeout
+  kick-on-timeout: true
+  
+  # Interval in seconds to remind players to login/register (set to 0 to disable)
+  reminder-interval: 10
+  
+  # Hide sensitive commands from console (like /login and /register)
+  hide-sensitive-commands: true
+  
+  # Interval in seconds to remind players to register after unregistering (set to 0 to disable)
+  post-unregister-reminder-interval: 5
+
+# Session settings
+session:
+  # Enable sessions (players don't need to login every time they join)
+  enable: true
+  
+  # Session timeout in minutes (1440 = 24 hours)
+  timeout: 1440
+  
+  # Check if player's IP matches the one they logged in with
+  check-ip: true
+
+# Protection settings for unauthenticated players
+protection:
+  # Block player movement
+  block-movement: true
+  
+  # Block player chat
+  block-chat: true
+  
+  # Block player commands
+  block-commands: true
+  
+  # Commands that are allowed before login
+  allowed-commands:
+    - /login
+    - /register
+    - /l
+    - /reg
+  
+  # Block player interaction with blocks and entities
+  block-interaction: true
+  
+  # Block player damage (both receiving and dealing)
+  block-damage: true
+  
+  # Block inventory access
+  block-inventory: true
+  
+  # Teleport player to spawn on join
+  teleport-to-spawn: true
+  
+  # Hide player from player list until authenticated
+  hide-from-player-list: false
+  
+  # Apply blindness effect to unauthenticated players
+  blind-effect: false

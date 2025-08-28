@@ -1,0 +1,77 @@
+# AuthLite Messages
+# You can customize all messages here
+# Use & for color codes (e.g. &a for green, &b for aqua, etc.)
+# Use {player} for player name, {ip} for IP address, etc.
+
+prefix: "&8[&bAuthLite&8] &7"
+
+# Login messages
+login:
+  success: "&aYou have successfully logged in!"
+  already_logged_in: "&cYou are already logged in!"
+  not_registered: "&cYou are not registered! Use /register <password> <confirmPassword>"
+  wrong_password: "&cWrong password! Please try again."
+  max_attempts: "&cToo many failed login attempts!"
+  usage: "&cUsage: /login <password>"
+  timeout: "&cYou took too long to login!"
+
+# Register messages
+register:
+  success: "&aYou have successfully registered!"
+  already_registered: "&cYou are already registered! Use /login <password>"
+  passwords_not_match: "&cPasswords do not match!"
+  password_too_short: "&cPassword is too short! Minimum length: {min}"
+  password_too_long: "&cPassword is too long! Maximum length: {max}"
+  usage: "&cUsage: /register <password> <confirmPassword>"
+  prompt_after_unregister: "&eYou have unregistered. Please register again using /register <password> <confirmPassword>"
+
+# Change password messages
+change_password:
+  success: "&aYou have successfully changed your password!"
+  not_logged_in: "&cYou must be logged in to change your password!"
+  wrong_password: "&cYour current password is incorrect!"
+  passwords_not_match: "&cNew passwords do not match!"
+  password_too_short: "&cPassword is too short! Minimum length: {min}"
+  password_too_long: "&cPassword is too long! Maximum length: {max}"
+  usage: "&cUsage: /changepassword <oldPassword> <newPassword>"
+
+# Logout messages
+logout:
+  success: "&aYou have successfully logged out!"
+  not_logged_in: "&cYou are not logged in!"
+
+# Unregister messages
+unregister:
+  success: "&aYou have successfully unregistered!"
+  not_registered: "&cYou are not registered!"
+  wrong_password: "&cWrong password! Please try again."
+  usage: "&cUsage: /unregister <password>"
+
+# Admin messages
+admin:
+  reload:
+    success: "&aAuthLite has been reloaded!"
+  register:
+    success: "&aPlayer {player} has been registered!"
+    already_registered: "&cPlayer {player} is already registered!"
+    usage: "&cUsage: /authlite register <player> <password>"
+  change_password:
+    success: "&aPassword for player {player} has been changed!"
+    not_registered: "&cPlayer {player} is not registered!"
+    usage: "&cUsage: /authlite changepassword <player> <newPassword>"
+  unregister:
+    success: "&aPlayer {player} has been unregistered!"
+    not_registered: "&cPlayer {player} is not registered!"
+    usage: "&cUsage: /authlite unregister <player>"
+  usage: "&cUsage: /authlite <reload|register|changepassword|unregister> [player] [password]"
+
+# Protection messages
+protection:
+  must_login: "&cYou must login first! Use /login <password>"
+  must_register: "&cYou must register first! Use /register <password> <confirmPassword>"
+  no_permission: "&cYou don't have permission to use this command!"
+  command_blocked: "&cYou must login before using commands!"
+
+# Session messages
+session:
+  resumed: "&aYour session has been resumed!"

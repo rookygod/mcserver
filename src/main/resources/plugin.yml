@@ -1,0 +1,67 @@
+name: AuthLite
+version: '${project.version}'
+main: com.rookygod.authlite.AuthLite
+api-version: '1.21'
+authors: [rookygod]
+description: A lightweight authentication plugin for Paper servers
+commands:
+  login:
+    description: Login to the server
+    usage: /login <password>
+    aliases: [l]
+  register:
+    description: Register on the server
+    usage: /register <password> <confirmPassword>
+    aliases: [reg]
+  changepassword:
+    description: Change your password
+    usage: /changepassword <oldPassword> <newPassword>
+    aliases: [changepw, cp]
+  logout:
+    description: Logout from the server
+    usage: /logout
+  unregister:
+    description: Unregister from the server
+    usage: /unregister <password>
+    aliases: [unreg]
+  authlite:
+    description: Admin commands for AuthLite
+    usage: /authlite <reload|register|changepassword|unregister> [player] [password]
+    aliases: [al]
+permissions:
+  authlite.login:
+    description: Allows players to login
+    default: true
+  authlite.register:
+    description: Allows players to register
+    default: true
+  authlite.changepassword:
+    description: Allows players to change their password
+    default: true
+  authlite.logout:
+    description: Allows players to logout
+    default: true
+  authlite.unregister:
+    description: Allows players to unregister
+    default: true
+  authlite.admin.reload:
+    description: Allows admins to reload the plugin
+    default: op
+  authlite.admin.register:
+    description: Allows admins to register other players
+    default: op
+  authlite.admin.changepassword:
+    description: Allows admins to change other players' passwords
+    default: op
+  authlite.admin.unregister:
+    description: Allows admins to unregister other players
+    default: op
+  authlite.admin:
+    description: Gives access to all admin commands
+    default: op
+    children:
+      authlite.admin.reload: true
+      authlite.admin.register: true
+      authlite.admin.changepassword: true
+      authlite.admin.unregister: true
+

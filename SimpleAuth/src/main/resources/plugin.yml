@@ -1,0 +1,17 @@
+name: SimpleAuth
+version: '1.0'
+main: com.rookygod.simpleauth.SimpleAuth
+api-version: '1.21'
+description: A simple authentication plugin for Paper 1.21.x
+author: rookygod
+commands:
+  register:
+    description: Register a new account
+    usage: /register <password>
+  login:
+    description: Login to your account
+    usage: /login <password>
+  changepassword:
+    description: Change your password
+    usage: /changepassword <old> <new>
+

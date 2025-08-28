@@ -93,7 +93,7 @@ public class PlayerProtectionListener implements Listener {
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         if (plugin.getProtectionManager().shouldBlockChat(event.getPlayer())) {
             event.setCancelled(true);
-            plugin.getMessageManager().sendMessage(event.getPlayer(), "protection.must_login");
+            plugin.getProtectionManager().sendAuthenticationMessage(event.getPlayer());
         }
     }
     
@@ -103,7 +103,9 @@ public class PlayerProtectionListener implements Listener {
         
         if (plugin.getProtectionManager().shouldBlockCommand(event.getPlayer(), command)) {
             event.setCancelled(true);
+            // Send command blocked message and then the appropriate authentication message
             plugin.getMessageManager().sendMessage(event.getPlayer(), "protection.command_blocked");
+            plugin.getProtectionManager().sendAuthenticationMessage(event.getPlayer());
         }
     }
     
@@ -194,4 +196,3 @@ public class PlayerProtectionListener implements Listener {
         plugin.getProtectionManager().applyProtection(player);
     }
 }
-

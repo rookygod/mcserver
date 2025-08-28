@@ -85,10 +85,22 @@ public class ProtectionManager {
             player.teleport(player.getWorld().getSpawnLocation());
         }
         
-        // Send message to player
+        // Send appropriate message to player based on registration status
+        sendAuthenticationMessage(player);
+    }
+    
+    /**
+     * Sends the appropriate authentication message to the player based on their registration status.
+     * 
+     * @param player The player to send the message to
+     */
+    public void sendAuthenticationMessage(Player player) {
+        // Only send one message based on registration status
         if (plugin.getDataManager().isRegistered(player.getUniqueId())) {
+            // Player is registered, send login message
             plugin.getMessageManager().sendMessage(player, "protection.must_login");
         } else if (plugin.getConfigManager().isForceRegister()) {
+            // Player is not registered, send register message
             plugin.getMessageManager().sendMessage(player, "protection.must_register");
         }
     }
@@ -107,4 +119,3 @@ public class ProtectionManager {
         }
     }
 }
-

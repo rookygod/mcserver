@@ -1,0 +1,54 @@
+name: SimpleAuthPlus
+version: '1.0'
+main: com.rookygod.simpleauthplus.SimpleAuthPlus
+api-version: '1.21'
+description: A lightweight authentication plugin for Paper 1.21.x
+author: rookygod
+commands:
+  register:
+    description: Register a new account
+    usage: /register <password> <confirmPassword>
+    aliases: [reg]
+    permission: authme.register
+  login:
+    description: Login to your account
+    usage: /login <password>
+    aliases: [l]
+    permission: authme.login
+  logout:
+    description: Logout from your account
+    usage: /logout
+    aliases: [quit]
+    permission: authme.logout
+  changepassword:
+    description: Change your password
+    usage: /changepassword <oldPassword> <newPassword>
+    aliases: [changepw, cp]
+    permission: authme.changepassword
+  authreload:
+    description: Reload the plugin configuration
+    usage: /authreload
+    permission: authme.admin.reload
+
+permissions:
+  authme.register:
+    description: Allows players to register
+    default: true
+  authme.login:
+    description: Allows players to login
+    default: true
+  authme.logout:
+    description: Allows players to logout
+    default: true
+  authme.changepassword:
+    description: Allows players to change their password
+    default: true
+  authme.admin.reload:
+    description: Allows admins to reload the plugin configuration
+    default: op
+  authme.admin:
+    description: Gives access to all admin commands
+    default: op
+    children:
+      authme.admin.reload: true
+

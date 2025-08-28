@@ -1,0 +1,72 @@
+# SimpleAuthPlus Messages
+# You can use color codes with & (e.g. &a for green, &c for red, etc.)
+# Available placeholders:
+# {player} - Player name
+# {attempts} - Number of login attempts
+# {max_attempts} - Maximum number of login attempts
+# {timeout} - Login timeout in seconds
+# {captcha} - Captcha code
+# {min_length} - Minimum password length
+# {max_length} - Maximum password length
+
+prefix: "&8[&bSimpleAuthPlus&8] &r"
+
+# Registration messages
+registration:
+  success: "&aYou have been registered successfully!"
+  already-registered: "&cYou are already registered!"
+  auto-registered: "&aYou have been auto-registered! Your password is: {password}"
+  password-too-short: "&cPassword is too short! Minimum length: {min_length}"
+  password-too-long: "&cPassword is too long! Maximum length: {max_length}"
+  passwords-not-match: "&cPasswords do not match!"
+  usage: "&cUsage: /register <password> <confirmPassword>"
+
+# Login messages
+login:
+  success: "&aYou have been logged in successfully!"
+  already-logged-in: "&cYou are already logged in!"
+  not-registered: "&cYou are not registered! Use /register <password> <confirmPassword>"
+  wrong-password: "&cWrong password! Attempts: {attempts}/{max_attempts}"
+  too-many-attempts: "&cToo many login attempts! You have been kicked."
+  timeout: "&cLogin timeout! You have been kicked."
+  usage: "&cUsage: /login <password>"
+  auto-login: "&aYou have been auto-logged in!"
+
+# Logout messages
+logout:
+  success: "&aYou have been logged out successfully!"
+  not-logged-in: "&cYou are not logged in!"
+
+# Change password messages
+change-password:
+  success: "&aYour password has been changed successfully!"
+  not-logged-in: "&cYou must be logged in to change your password!"
+  wrong-password: "&cWrong password!"
+  usage: "&cUsage: /changepassword <oldPassword> <newPassword>"
+
+# Captcha messages
+captcha:
+  required: "&cPlease enter the captcha code: &e{captcha}"
+  success: "&aCaptcha verified successfully!"
+  wrong: "&cWrong captcha code! Please try again."
+  usage: "&cUsage: /login <password> <captcha>"
+
+# Admin messages
+admin:
+  reload-success: "&aConfiguration reloaded successfully!"
+  reload-failed: "&cFailed to reload configuration!"
+  no-permission: "&cYou don't have permission to use this command!"
+
+# Join/quit messages
+join:
+  login-required: "&cPlease login with /login <password>"
+  register-required: "&cPlease register with /register <password> <confirmPassword>"
+  timeout-warning: "&cYou have {timeout} seconds to login!"
+
+# Protection messages
+protection:
+  move-blocked: "&cYou must login first!"
+  chat-blocked: "&cYou must login first!"
+  command-blocked: "&cYou must login first!"
+  interaction-blocked: "&cYou must login first!"
+

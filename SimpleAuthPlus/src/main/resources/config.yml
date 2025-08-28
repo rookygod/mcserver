@@ -1,0 +1,81 @@
+# SimpleAuthPlus Configuration
+
+# Session settings
+session:
+  # Session duration in seconds (600 = 10 minutes)
+  duration: 600
+  # Whether to enable auto-login if session is still active
+  enabled: true
+  # Whether to persist sessions across server restarts
+  persist-across-restarts: false
+
+# Registration settings
+registration:
+  # Whether to enable auto-registration on first join
+  auto-register: false
+  # Minimum password length
+  min-password-length: 4
+  # Maximum password length
+  max-password-length: 20
+
+# Login settings
+login:
+  # Maximum number of login attempts before kicking the player
+  max-attempts: 3
+  # Time in seconds before kicking a player if they don't log in
+  timeout: 60
+  # Whether to teleport players to spawn after login
+  teleport-on-login: true
+  # Whether to teleport players to their last location after login
+  teleport-to-last-location: false
+
+# Captcha settings
+captcha:
+  # Whether to enable captcha verification
+  enabled: true
+  # Number of failed login attempts before requiring captcha
+  after-failed-attempts: 2
+  # Length of the captcha code
+  length: 5
+  # Characters to use in the captcha (remove any confusing characters like 0, O, 1, I, etc.)
+  characters: "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+
+# Limbo settings
+limbo:
+  # Whether to enable limbo mode for unauthenticated players
+  enabled: true
+  # Whether to hide unauthenticated players from other players
+  hide-players: true
+  # Whether to disable damage for unauthenticated players
+  disable-damage: true
+
+# Spawn location (will be set automatically when using teleport-on-login)
+spawn:
+  world: "world"
+  x: 0
+  y: 64
+  z: 0
+  yaw: 0
+  pitch: 0
+
+# Advanced settings
+advanced:
+  # Whether to block commands for unauthenticated players
+  block-commands: true
+  # List of commands that unauthenticated players can use
+  allowed-commands:
+    - "/login"
+    - "/register"
+    - "/l"
+    - "/reg"
+  # Whether to block chat for unauthenticated players
+  block-chat: true
+  # Whether to block movement for unauthenticated players
+  block-movement: true
+  # Whether to block interaction for unauthenticated players
+  block-interaction: true
+  # Whether to save the last login IP for each player
+  save-last-ip: true
+  # Whether to save the last login time for each player
+  save-last-login: true
+

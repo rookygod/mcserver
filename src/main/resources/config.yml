@@ -26,6 +26,9 @@ authentication:
   
   # Interval in seconds to remind players to login/register (set to 0 to disable)
   reminder-interval: 10
+  
+  # Hide sensitive commands from console (like /login and /register)
+  hide-sensitive-commands: true
 
 # Session settings
 session:

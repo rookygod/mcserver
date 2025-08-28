@@ -19,6 +19,7 @@ public class ConfigManager {
     private boolean kickOnWrongPassword;
     private boolean kickOnTimeout;
     private int reminderInterval;
+    private boolean hideSensitiveCommands;
     
     // Session settings
     private boolean enableSessions;
@@ -70,6 +71,7 @@ public class ConfigManager {
         kickOnWrongPassword = config.getBoolean("authentication.kick-on-wrong-password", true);
         kickOnTimeout = config.getBoolean("authentication.kick-on-timeout", true);
         reminderInterval = config.getInt("authentication.reminder-interval", 10);
+        hideSensitiveCommands = config.getBoolean("authentication.hide-sensitive-commands", true);
         
         // Session settings
         enableSessions = config.getBoolean("session.enable", true);
@@ -120,6 +122,10 @@ public class ConfigManager {
     
     public int getReminderInterval() {
         return reminderInterval;
+    }
+    
+    public boolean isHideSensitiveCommands() {
+        return hideSensitiveCommands;
     }
     
     public boolean isEnableSessions() {

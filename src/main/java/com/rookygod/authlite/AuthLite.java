@@ -4,6 +4,7 @@ import com.rookygod.authlite.commands.*;
 import com.rookygod.authlite.config.ConfigManager;
 import com.rookygod.authlite.config.MessageManager;
 import com.rookygod.authlite.data.DataManager;
+import com.rookygod.authlite.listeners.CommandSecurityListener;
 import com.rookygod.authlite.listeners.PlayerProtectionListener;
 import com.rookygod.authlite.protection.ProtectionManager;
 import com.rookygod.authlite.session.SessionManager;
@@ -37,6 +38,7 @@ public final class AuthLite extends JavaPlugin {
         
         // Register listeners
         getServer().getPluginManager().registerEvents(new PlayerProtectionListener(this), this);
+        getServer().getPluginManager().registerEvents(new CommandSecurityListener(this), this);
         
         getLogger().info("AuthLite has been enabled!");
     }
@@ -100,4 +102,3 @@ public final class AuthLite extends JavaPlugin {
         return protectionManager;
     }
 }
-

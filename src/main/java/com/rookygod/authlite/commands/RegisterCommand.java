@@ -20,6 +20,11 @@ public class RegisterCommand implements CommandExecutor {
     
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        // Hide sensitive command from console logs
+        if (plugin.getConfigManager().isHideSensitiveCommands()) {
+            plugin.getLogger().info(sender.getName() + " issued a sensitive command (password hidden)");
+        }
+        
         if (!(sender instanceof Player player)) {
             sender.sendMessage("This command can only be used by players");
             return true;
@@ -90,4 +95,3 @@ public class RegisterCommand implements CommandExecutor {
         }
     }
 }
-

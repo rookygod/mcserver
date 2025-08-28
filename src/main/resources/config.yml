@@ -23,6 +23,9 @@ authentication:
   
   # Kick player on login timeout
   kick-on-timeout: true
+  
+  # Interval in seconds to remind players to login/register (set to 0 to disable)
+  reminder-interval: 10
 
 # Session settings
 session:
@@ -70,4 +73,3 @@ protection:
   
   # Apply blindness effect to unauthenticated players
   blind-effect: false
-

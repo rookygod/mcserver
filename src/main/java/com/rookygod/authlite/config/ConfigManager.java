@@ -18,6 +18,7 @@ public class ConfigManager {
     private int maxLoginAttempts;
     private boolean kickOnWrongPassword;
     private boolean kickOnTimeout;
+    private int reminderInterval;
     
     // Session settings
     private boolean enableSessions;
@@ -68,6 +69,7 @@ public class ConfigManager {
         maxLoginAttempts = config.getInt("authentication.max-login-attempts", 3);
         kickOnWrongPassword = config.getBoolean("authentication.kick-on-wrong-password", true);
         kickOnTimeout = config.getBoolean("authentication.kick-on-timeout", true);
+        reminderInterval = config.getInt("authentication.reminder-interval", 10);
         
         // Session settings
         enableSessions = config.getBoolean("session.enable", true);
@@ -114,6 +116,10 @@ public class ConfigManager {
     
     public boolean isKickOnTimeout() {
         return kickOnTimeout;
+    }
+    
+    public int getReminderInterval() {
+        return reminderInterval;
     }
     
     public boolean isEnableSessions() {
@@ -168,4 +174,3 @@ public class ConfigManager {
         return blindEffect;
     }
 }
-

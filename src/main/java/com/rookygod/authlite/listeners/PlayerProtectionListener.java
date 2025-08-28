@@ -19,11 +19,13 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerProtectionListener implements Listener {
 
     private final AuthLite plugin;
     private final Map<UUID, BukkitTask> loginTimeoutTasks = new HashMap<>();
+    private final Map<UUID, BukkitTask> reminderTasks = new ConcurrentHashMap<>();
     
     public PlayerProtectionListener(AuthLite plugin) {
         this.plugin = plugin;
@@ -61,6 +63,46 @@ public class PlayerProtectionListener implements Listener {
             
             loginTimeoutTasks.put(player.getUniqueId(), task);
         }
+        
+        // Start reminder task
+        startReminderTask(player);
+    }
+    
+    /**
+     * Starts a repeating task to remind the player to login or register
+     * 
+     * @param player The player to remind
+     */
+    private void startReminderTask(Player player) {
+        // Only start if reminder interval is greater than 0
+        int reminderInterval = plugin.getConfigManager().getReminderInterval();
+        if (reminderInterval <= 0) {
+            return;
+        }
+        
+        UUID uuid = player.getUniqueId();
+        
+        // Cancel any existing reminder task for this player
+        if (reminderTasks.containsKey(uuid)) {
+            reminderTasks.get(uuid).cancel();
+            reminderTasks.remove(uuid);
+        }
+        
+        // Create a new reminder task
+        BukkitTask task = plugin.getServer().getScheduler().runTaskTimer(plugin, () -> {
+            // Only send reminder if player is still online and not authenticated
+            if (player.isOnline() && !plugin.getSessionManager().isAuthenticated(player)) {
+                plugin.getProtectionManager().sendAuthenticationMessage(player);
+            } else {
+                // Cancel task if player is offline or authenticated
+                if (reminderTasks.containsKey(uuid)) {
+                    reminderTasks.get(uuid).cancel();
+                    reminderTasks.remove(uuid);
+                }
+            }
+        }, reminderInterval * 20L, reminderInterval * 20L); // Convert seconds to ticks
+        
+        reminderTasks.put(uuid, task);
     }
     
     @EventHandler(priority = EventPriority.LOWEST)
@@ -72,6 +114,12 @@ public class PlayerProtectionListener implements Listener {
         if (loginTimeoutTasks.containsKey(uuid)) {
             loginTimeoutTasks.get(uuid).cancel();
             loginTimeoutTasks.remove(uuid);
+        }
+        
+        // Cancel reminder task
+        if (reminderTasks.containsKey(uuid)) {
+            reminderTasks.get(uuid).cancel();
+            reminderTasks.remove(uuid);
         }
     }
     
@@ -184,6 +232,12 @@ public class PlayerProtectionListener implements Listener {
             loginTimeoutTasks.remove(uuid);
         }
         
+        // Cancel reminder task
+        if (reminderTasks.containsKey(uuid)) {
+            reminderTasks.get(uuid).cancel();
+            reminderTasks.remove(uuid);
+        }
+        
         // Remove protection
         plugin.getProtectionManager().removeProtection(player);
     }
@@ -194,5 +248,8 @@ public class PlayerProtectionListener implements Listener {
         
         // Apply protection
         plugin.getProtectionManager().applyProtection(player);
+        
+        // Start reminder task
+        startReminderTask(player);
     }
 }
